@@ -22,26 +22,30 @@
 
     <!-- Main Body of Calculator -->
     <div class="main-body">
-      <section class="window"><!-- Window --></section>
+      <!-- Window -->
+      <section class="window" id="display">
+        <input type="text" class="calc-window" value="0" disabled> <!-- "disabled makes it so you can't input anything into the window" -->
+      </section>
       <section class="buttons">
         <!-- Buttons -->
-        <div class="button-7">7</div>
-        <div class="button-8">8</div>
-        <div class="button-9">9</div>
-        <div class="button-divide">/</div>
-        <div class="button-4">4</div>
-        <div class="button-5">5</div>
-        <div class="button-6">6</div>
-        <div class="button-mult">x</div>
-        <div class="button-1">1</div>
-        <div class="button-2">2</div>
-        <div class="button-3">3</div>
-        <div class="button-plus">+</div>
-        <div class="button-zero">0</div>
-        <div class="button-period">.</div>
-        <div class="button-equal">=</div>
-        <div class="button-sub">-</div>
+        <button type="button" value="7" id="seven">7</button>
+        <button type="button" value="8" id="eight">8</button>
+        <button type="button" value="9" id="nine">9</button>
+        <button type="button" value="/" id="divide">/</button>
+        <button type="button" value="4" id="four">4</button>
+        <button type="button" value="5" id="five">5</button>
+        <button type="button" value="6" id="six">6</button>
+        <button type="button" value="*" id="multiply">&times;</button>
+        <button type="button" value="1" id="one">1</button>
+        <button type="button" value="2" id="two">2</button>
+        <button type="button" value="3" id="three">3</button>
+        <button type="button" value="+" id="add">&plus;</button>
+        <button type="button" value="0" id="zero">0</button>
+        <button type="button" value="." id="decimal">.</button>
+        <button type="button" value="=" id="equal">&equals;</button>
+        <button type="button" value="-" id="subtract">&minus;</button>
       </section>
+      <button type="button" value="Clear" class="all-clear" id="clear">Clear</button>
     </div>
   
     <script type="text/javascript" src="js/main.js"></script>
