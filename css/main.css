@@ -31,6 +31,13 @@
 }
 
 /* Buttons */
+.calc-buttons{
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
 .buttons{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
