@@ -11,7 +11,7 @@ Extras:
 - Functional clear button
 - Prevent invalid inputs (operators next to each other, etc.) */
 
-const keys = document.querySelector('.calc-buttons'); //doing this targets all buttons
+const keys = document.querySelector('#calculate'); //doing this targets all buttons
 keys.addEventListener('click', (event) => {
   const { target } = event;
   const { value } = target;
@@ -27,7 +27,7 @@ const calculator = {
   displayText: '0',
   prevTotal: null,
 
-  //method
+  //METHOD
   parseInput(value) {
     //have any of the non-numeral buttons been clicked?
     switch (value) {
@@ -40,23 +40,49 @@ const calculator = {
       case '.':
         if (this.displayText == 0) {
           //pass '0.' into add text method
+          this.addText('0.')
         } else {
           //add value to text string
+          this.addText(value)
         }
         break;
       default:
         //add value to text string
+        this.addText(value)
         break;
     }
   },
-  //method
+  //METHOD
   addText(value) {
     if (this.displayText === '0') {
-      this.displayText = '';
-    }else if(this.prevTotal !== null){
+      this.displayText = ''
+    } else if (this.prevTotal !== null) {
       //this takes 3+3=6 then +3=9, for example
-      this.displayText = this.prevTotal
-      this.prevTotal = null
+      this.displayText = this.prevTotal;
+      this.prevTotal = null;
     }
+    if (isNaN(+(value)) && isNaN(+(this.displayText))) {
+      /*user has entered an invalid sequence, don't proceed; check whether last character in display AND the entered value are not numbers*/
+      if (isNaN(this.displayText.slice(-1))) {
+        return; //ends function
+      }
+    }
+    this.displayText += value;
+    //output display text to screen
+    this.outputText(this.displayText);
   },
+  //METHOD
+  outputText(text){
+    document.querySelector('#display').value = text
+  }
 };
+
+
+/*IGNORE THE CODE BELOW*/
+// let total = 2;
+// document.querySelector('#calculate').addEventListener('click', squaredTwo)
+
+// function squaredTwo() {
+//   total=total**2
+//   document.querySelector('#display').innerText=total
+// }
