@@ -19,7 +19,8 @@ keys.addEventListener('click', (event) => {
     return; //want to pass nothing; exit; not necessary
   } else {
     //putting nothing here ensure that when you click outside of a button, nothing happens
-    //console.log(target) --> this is for testing stuff out
+    // console.log(target) //--> this is for testing stuff out
+    calculator.parseInput(value) //added to see values in display
   }
 });
 
