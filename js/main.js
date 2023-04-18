@@ -20,7 +20,7 @@ keys.addEventListener('click', (event) => {
   } else {
     //putting nothing here ensure that when you click outside of a button, nothing happens
     // console.log(target) //--> this is for testing stuff out
-    calculator.parseInput(value) //added to see values in display
+    calculator.parseInput(value); //added to see values in display
   }
 });
 
@@ -34,50 +34,63 @@ const calculator = {
     switch (value) {
       case '=':
         //calculate the answer
+        this.calcAnswer(this.displayText);
         break;
       case 'Clear':
         //clear screen and all stored values
+        this.clearAll();
         break;
       case '.':
         if (this.displayText == 0) {
           //pass '0.' into add text method
-          this.addText('0.')
+          this.addText('0.');
         } else {
           //add value to text string
-          this.addText(value)
+          this.addText(value);
         }
         break;
       default:
         //add value to text string
-        this.addText(value)
+        this.addText(value);
         break;
     }
   },
   //METHOD
   addText(value) {
     if (this.displayText === '0') {
-      this.displayText = ''
+      this.displayText = '';
     } else if (this.prevTotal !== null) {
       //this takes 3+3=6 then +3=9, for example
       this.displayText = this.prevTotal;
       this.prevTotal = null;
     }
-    if (isNaN(+(value)) && isNaN(+(this.displayText))) {
+    if (isNaN(+value) && isNaN(+this.displayText)) {
       /*user has entered an invalid sequence, don't proceed; check whether last character in display AND the entered value are not numbers*/
       if (isNaN(this.displayText.slice(-1))) {
         return; //ends function
-      }
+      }//rewrite statement to check if it ends in a dot or operator
     }
     this.displayText += value;
     //output display text to screen
     this.outputText(this.displayText);
   },
   //METHOD
-  outputText(text){
-    document.querySelector('#display').value = text
+  outputText(text) {
+    document.querySelector('#display').value = text;
+  },
+  //METHOD
+  calcAnswer(equation) {
+    //pros vs. cons of eval()?
+    let result = Function('return ' + equation)();
+    this.outputText(result);
+  },
+  //METHOD
+  clearAll(){
+    this.displayText = '0',
+    this.prevTotal = null,
+    this.outputText(this.displayText)
   }
 };
-
 
 /*IGNORE THE CODE BELOW*/
 // let total = 2;
